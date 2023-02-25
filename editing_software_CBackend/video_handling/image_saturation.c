@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
                     for (int x = 0; x < codec_context->width; x++) {
                         for (int plane = 0; plane < 3; plane++) {
                             int index = y * frame->linesize[plane] + x * 3 + plane;
-                            frame->data[plane][index] = frame->data[plane][index] * constant_factor;
+                            frame->data[plane][index] = frame->data[plane][index]*3;
                         }
                     }
                 }

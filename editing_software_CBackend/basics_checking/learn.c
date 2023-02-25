@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include <libavformat/avformat.h>
 
 int main(void) {
     int some = 5;

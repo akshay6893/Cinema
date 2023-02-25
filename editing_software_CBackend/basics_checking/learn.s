@@ -1,6 +1,6 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 10, 15	sdk_version 10, 15, 6
-	.globl	_main                   ## -- Begin function main
+	.build_version macos, 12, 0	sdk_version 13, 1
+	.globl	_main                           ## -- Begin function main
 	.p2align	4, 0x90
 _main:                                  ## @main
 	.cfi_startproc
@@ -10,29 +10,24 @@ _main:                                  ## @main
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$32, %rsp
+	subq	$16, %rsp
 	movl	$0, -4(%rbp)
 	movl	$5, -8(%rbp)
 	movq	$0, -16(%rbp)
 	leaq	-8(%rbp), %rax
 	movq	%rax, -16(%rbp)
 	leaq	-16(%rbp), %rax
-                                        ## kill: def $eax killed $eax killed $rax
-	leaq	L_.str(%rip), %rdi
 	movl	%eax, %esi
+	leaq	L_.str(%rip), %rdi
 	movb	$0, %al
 	callq	_printf
-	movq	-16(%rbp), %rcx
-                                        ## kill: def $ecx killed $ecx killed $rcx
+	movq	-16(%rbp), %rax
+	movl	%eax, %esi
 	leaq	L_.str.1(%rip), %rdi
-	movl	%ecx, %esi
-	movl	%eax, -20(%rbp)         ## 4-byte Spill
 	movb	$0, %al
 	callq	_printf
-	xorl	%ecx, %ecx
-	movl	%eax, -24(%rbp)         ## 4-byte Spill
-	movl	%ecx, %eax
-	addq	$32, %rsp
+	xorl	%eax, %eax
+	addq	$16, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
